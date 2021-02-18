@@ -1,0 +1,50 @@
+<h2 class="text-center">Registration</h2>
+<div class="row">
+<div class="col-md-3">
+</div>
+<div class="col-md-6 col-md-offset-3">
+<div class="jumbotron">
+<form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" >
+<div class="form-group">
+<label for="name">Name</label>
+<input type="text" name="username" formControlName="name" autocomplete="off" style="color: black;" class="form-control input-sm" placeholder="Name">
+
+</div>
+<div class="form-group">
+    <label for="Password">Password</label>
+    <input type="password" name="Password" formControlName="password" autocomplete="off" style="color: black;" class="form-control input-sm" placeholder="Password">
+</div>    
+<div class="form-group">
+<label for="email">Email</label>
+<input type="email" name="email" formControlName="email" autocomplete="off" style="color: black;" class="form-control input-sm" placeholder="Email">
+</div>
+<div class="form-group">
+    <label for="mobile">Mobile</label>
+    <input type="number" name="mobile" formControlName="mobile" autocomplete="off" style="color: black;" class="form-control input-sm" placeholder="Mobile Number">
+</div>
+<div class="form-group">
+    <label for="type">User Type</label>
+    <div class="custom-control custom-radio">
+  <input type="radio" class="custom-control-input" value="Student" id="defaultUnchecked2" name="type" mdbInput>
+  <label class="custom-control-label" for="defaultUnchecked2" >Student</label><br>
+</div>
+<div class="custom-control custom-radio">
+  <input type="radio" class="custom-control-input" id="defaultUnchecked1" name="type" value="Ambassador" mdbInput>
+  <label class="custom-control-label" for="defaultUnchecked1">Ambassador</label>
+</div>
+</div>
+<div class="form-group">
+    <label for="division">Division</label>
+    <select formControlName="division" name="division" class="form-control input-sm">
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+        <option value="Sales">Sales</option>
+    </select>
+</div>
+<button type="submit" class="btn btn-success" >Register</button>
+</form>
+</div>
+</div>
+<div class="col-md-3">
+</div>
+</div>
