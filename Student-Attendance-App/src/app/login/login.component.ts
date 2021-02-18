@@ -16,14 +16,14 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
   this.angForm = this.fb.group({
   email: ['', [Validators.required,Validators.minLength(1), Validators.email]],
-  password: ['', Validators.required,Validators.minLength(3)]
+  password: ['', Validators.required]
   });
   }
   ngOnInit() {
   }
-  postdata(angForm1)
+  postdata(angForm)
   {
-  this.dataService.userlogin(angForm1.value.email,angForm1.value.password)
+  this.dataService.userlogin(angForm.value.email,angForm.value.password)
   .pipe(first())
   .subscribe(
   data => {
