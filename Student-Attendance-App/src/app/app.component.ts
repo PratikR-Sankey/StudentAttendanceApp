@@ -10,7 +10,7 @@ export class AppComponent {
   loginbtn:boolean;
   logoutbtn:boolean;
   constructor(private dataService: ApiService) {
-    dataService.getLoggedInName.subscribe(name => this.changeName(name));
+   dataService.getLoggedInName.subscribe(name => this.changeName(name));
     if(this.dataService.isLoggedIn())
     {
     console.log("loggedin");

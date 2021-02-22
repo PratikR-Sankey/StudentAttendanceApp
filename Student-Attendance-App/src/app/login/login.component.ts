@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Observable, throwError } from 'rxjs';
+import { Users } from '../users';
 
 
 @Component({
@@ -23,10 +24,12 @@ export class LoginComponent implements OnInit {
   }
   postdata(angForm)
   {
+    console.log(this.angForm.value);
   this.dataService.userlogin(angForm.value.email,angForm.value.password)
   .pipe(first())
   .subscribe(
   data => {
+    alert(angForm.value.email+"Is Successfully Logged In ")
   const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/dashboard';
   this.router.navigate([redirect]);
   },

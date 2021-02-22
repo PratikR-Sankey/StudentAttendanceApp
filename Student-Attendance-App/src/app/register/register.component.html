@@ -6,8 +6,8 @@
 <div class="jumbotron">
 <form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" >
 <div class="form-group">
-<label for="name">Name</label>
-<input type="text" name="username" formControlName="name" autocomplete="off" style="color: black;" class="form-control input-sm" placeholder="Name">
+<label for="username">Name</label>
+<input type="text" name="username" formControlName="username" autocomplete="off" style="color: black;" class="form-control input-sm" placeholder="Name">
 
 </div>
 <div class="form-group">
@@ -25,12 +25,10 @@
 <div class="form-group">
     <label for="type">User Type</label>
     <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" value="Student" id="defaultUnchecked2" name="type" mdbInput>
-  <label class="custom-control-label" for="defaultUnchecked2" >Student</label><br>
+  <input type="radio"  value="Student" formControlName="type">&nbsp; Student
 </div>
 <div class="custom-control custom-radio">
-  <input type="radio" class="custom-control-input" id="defaultUnchecked1" name="type" value="Ambassador" mdbInput>
-  <label class="custom-control-label" for="defaultUnchecked1">Ambassador</label>
+  <input type="radio"formControlName="type" value="Ambassador"> &nbsp;Ambassador
 </div>
 </div>
 <div class="form-group">
@@ -41,7 +39,7 @@
         <option value="Sales">Sales</option>
     </select>
 </div>
-<button type="submit" class="btn btn-success" >Register</button>
+<button type="submit" class="btn btn-success"  >Register</button>
 </form>
 </div>
 </div>

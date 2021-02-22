@@ -10,12 +10,11 @@ import { Observable,throwError } from  'rxjs';
 })
 export class ApiService {
   redirectUrl: string;
-  baseUrl:string = "http://127.0.0.1:8080/login";
+  baseUrl:string = "http://localhost/login";
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   constructor(private httpClient : HttpClient) { }
   public userlogin(email, password) {
-  alert(email)
-  return this.httpClient.post(this.baseUrl + '/login.php', { email, password })
+  return this.httpClient.post<any>(this.baseUrl + '/login.php',{"email":email,"password":password})
   .pipe(map(Users => {
   this.setToken(Users[0].username);
   this.getLoggedInName.emit(true);
@@ -23,11 +22,12 @@ export class ApiService {
   }));
 }
 public userregistration(username,password,email,mobile,type,division) {
-  return this.httpClient.post<any>(this.baseUrl + '/register.php', { username,password,email,mobile,type,division })
+  return this.httpClient.post<any>(this.baseUrl + '/register.php', { "username":username,"password":password,"email":email,"mobile":mobile,"type":type,"division":division })
   .pipe(map(Users => {
   return Users;
   }));
   }
+  
   setToken(token: string) {
     localStorage.setItem('token', token);
     }

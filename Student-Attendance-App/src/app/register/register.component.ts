@@ -3,6 +3,8 @@ import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angula
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { Users } from '../users';
+import { formatCurrency } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -24,23 +26,24 @@ export class RegisterComponent implements OnInit {
   
   ngOnInit() {
   }
-  
   postdata(angForm)
   {
-  this.dataService.userregistration(angForm.value.username,angForm.value.password,angForm.value.email,angForm.value.mobile,angForm.value.type,angForm.value.division)
+    
+  this.dataService.userregistration(angForm.value.username,angForm.value.password,angForm.value.email,angForm.value.mobile,angForm.get('type').value,angForm.value.division)
   .pipe(first())
   .subscribe(
   data => {
-  this.router.navigate(['login']);
+    alert(angForm.value.email+"Is Successfully Registered ")
+    const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/login';
+    this.router.navigate([redirect]);
   },
-  
   error => {
   });
   }
   
   get email() { return this.angForm.get('email'); }
   get password() { return this.angForm.get('password'); }
-  get name() { return this.angForm.get('username'); }
+  get username() { return this.angForm.get('username'); }
   get mobile() { return this.angForm.get('mobile'); }
   get type() { return this.angForm.get('type'); }
   get division() { return this.angForm.get('division'); }
