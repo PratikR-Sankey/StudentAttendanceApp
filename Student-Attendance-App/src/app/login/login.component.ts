@@ -22,20 +22,20 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
   }
-  postdata(angForm)
+  postdata(angForm1:any)
   {
-    console.log(this.angForm.value);
-  this.dataService.userlogin(angForm.value.email,angForm.value.password)
+    //console.log(this.angForm.value);
+  this.dataService.userlogin(angForm1.email,angForm1.password)
   .pipe(first())
   .subscribe(
   data => {
-    alert(angForm.value.email+"Is Successfully Logged In ")
-  const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/dashboard';
-  this.router.navigate([redirect]);
+    console.log(data);
+    alert(angForm1.value.email+"Is Successfully Logged In ")
+  this.router.navigate(['/dashboard']);
   },
   error => {
   alert("User name or password is incorrect")
-  });
+  }); 
   }
   get email() { return this.angForm.get('email'); }
   get password() { return this.angForm.get('password'); }

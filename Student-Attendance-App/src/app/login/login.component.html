@@ -4,7 +4,7 @@
 </div>
 <div class="col-md-4 col-md-offset-5">
 <div class="jumbotron">
-<form [formGroup]="angForm" (ngSubmit)="postdata(angForm)" autocomplete="off" >
+<form [formGroup]="angForm" (ngSubmit)="postdata(angForm.value)" autocomplete="off" >
 <div class="form-group">
 <label for="email">Email</label>
 <input type="email" name="email" formControlName="email" style="color: black;" autocomplete="off" class="form-control input-sm" placeholder="Email">
