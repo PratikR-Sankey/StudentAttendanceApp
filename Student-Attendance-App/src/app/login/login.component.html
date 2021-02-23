@@ -7,13 +7,25 @@
 <form [formGroup]="angForm" (ngSubmit)="postdata(angForm.value)" autocomplete="off" >
 <div class="form-group">
 <label for="email">Email</label>
+
 <input type="email" name="email" formControlName="email" style="color: black;" autocomplete="off" class="form-control input-sm" placeholder="Email">
+<div *ngIf="(primEmail.invalid && primEmail.touched) || primEmail.dirty">
+    <small *ngIf="primEmail.errors?.required" class="text-danger"> Email is required</small>
+    <small *ngIf="primEmail.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+  </div>
 </div>
 <div class="form-group">
 <label for="password">Password</label>
 <input type="password" name="password" formControlName="password" style="color: black;" autocomplete="off" class="form-control input-sm" placeholder="Password">
 </div>
-<button type="submit" class="btn btn-success" >Login</button>
+<div *ngIf="(pass.invalid && pass.touched) || pass.dirty">
+    <small *ngIf="pass.errors?.required" class="text-danger"> Password is required</small>
+  </div>
+
+<!-- <div class="form-group col text-right">
+    <a name="forgotpassword" class="btn btn-link pr-0" formControlName="forgot" (click)="clickme()">Forgot Password?</a>
+</div> -->
+<button type="submit" class="btn btn-success" [disabled]="angForm.invalid" >Login</button>
 </form>
 </div>
 </div>

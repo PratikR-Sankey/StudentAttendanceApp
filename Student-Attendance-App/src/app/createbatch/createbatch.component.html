@@ -1,0 +1,60 @@
+<main>
+    <div class="container">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-xs-12 col-sm-9">
+                <ol class="breadcrumb">
+                    <li class="nav-item"><a routerLink="/dashboard">Dashboard</a></li>&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item active"><a routerLink="/createbatch">CreateBatch</a></li>
+                </ol>                
+            </div>
+    
+        </div>
+    </div>
+</main>
+<div class="col">
+<div class="col-xs-12-sm-9">
+<div class="jumbotron">
+<form [formGroup]="angForm" (ngSubmit)="postdata(angForm.value)" autocomplete="off" >
+<div class="form-group" style="margin-top: -5%;">
+    <label for="s_name">Batch Name</label>
+    <input type="text" name="s_name" formControlName="s_name" style="color: black;" autocomplete="off" class="form-control input-sm" placeholder="Batch Name">
+</div>
+<div class="form-group">
+    <label for="division">Division</label>
+    <select formControlName="s_division" name="s_division" class="form-control input-sm">
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+        <option value="Sales">Sales</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="s_name">Student List</label><br/>
+    <input type="checkbox" name="s_student_list" formControlName="s_student_list">
+</div>
+<div class="form-group">
+    <label for="s_date">Batch Date</label>
+    <input formControlName="s_date" type="date" name="s_date" class="form-control input-sm" />
+</div>
+ <div class="form-group">
+    <label for="s_time">Batch time</label>
+    <ngb-timepicker ngModel="s_time" formControlName="s_time"></ngb-timepicker>
+</div> 
+<div class="form-group">
+    <label for="s_type">Session Type</label>
+    <select formControlName="s_type" change="selectChangeHandler($event)"name="s_type" class="form-control input-sm">
+        <option value="Online">Online</option>
+        <option value="Offline">Offline</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <button type="submit" class="btn btn-success" >Create</button>
+</div>
+<button type="submit" class="btn btn-primary" >Add Students</button>&nbsp;
+<button type="submit" class="btn btn-danger" >Remove Students</button>
+</form>
+</div>
+</div>
+<div class="col-md-5">
+</div>
+</div>
