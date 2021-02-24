@@ -47,7 +47,7 @@ $jsonText = file_get_contents('php://input');
    $s_division = mysqli_real_escape_string($con, trim($json->s_division));
    $s_student_list = mysqli_real_escape_string($con, trim($json->s_student_list)); 
    $s_date = $json->s_date;
-   $s_time = (array)$json->s_time;
+   $s_time = mysqli_real_escape_string($con, trim($json->s_time));
    $s_type = mysqli_real_escape_string($con, trim($json->s_type));
 
    if(isset($s_name,$s_division,$s_student_list,$s_date,$s_time,$s_type))

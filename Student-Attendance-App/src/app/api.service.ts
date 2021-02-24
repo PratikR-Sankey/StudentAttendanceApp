@@ -25,19 +25,22 @@ export class ApiService {
 public userregistration(username,password,email,mobile,type,division) {
   return this.httpClient.post<any>(this.baseUrl + '/register.php', { "username":username,"password":password,"email":email,"mobile":mobile,"type":type,"division":division })
   .pipe(map(Users => {
+    console.log(Users);
   return Users;
   }));
   }
   public selstudent(division) {
-    return this.httpClient.post<any>(this.baseUrl + '/1.php',{"division":division})
+    return this.httpClient.post<any>(this.baseUrl + '/studentlist.php',{"division":division})
     .pipe(map(Users => {
+      console.log(Users);
      return Users;
      }));
   }
-  public createbatch(s_name,s_division,s_student_list,s_date,s_time,s_type)
+  public createbatch(s_name,s_division,s_date,s_time,s_type)
   {
-    return this.httpClient.post<any>(this.baseUrl + '/createsession.php', { "s_name":s_name,"s_division":s_division,"s_student_list":'pratik',"s_date":s_date,"s_time":s_time,"s_type":s_type})
+    return this.httpClient.post<any>(this.baseUrl + '/createbatch.php', { "s_name":s_name,"s_division":s_division,"s_student_list":'pratik',"s_date":s_date,"s_time":s_time,"s_type":s_type})
   .pipe(map(Users => {
+    console.log(Users);
   return Users;
   }));
   }

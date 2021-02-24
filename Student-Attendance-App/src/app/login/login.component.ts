@@ -15,6 +15,7 @@ import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.compon
 })
 export class LoginComponent implements OnInit {
   angForm: FormGroup;
+  message = null;
   get primEmail(){
     return this.angForm.get('email')
     }
@@ -36,13 +37,21 @@ export class LoginComponent implements OnInit {
   .pipe(first())
   .subscribe(
   data => {
-    console.log(data);
-    if(data.Status == 200)
-    {
-      alert(angForm1.email+"Is Successfully Logged In ")
-  this.router.navigate(['/dashboard']);
-    }
-    
+    this.message = data.Status;
+    console.log(this.message);
+    if(this.message=="200")
+      {
+        alert(angForm1.email+"Is Successfully Logged In ")
+        this.router.navigate(['/dashboard']);
+      }
+      else if(this.message=="100")
+      {
+        alert("Must enter all the fields")
+      }
+      else
+      {
+        alert("User name or password is incorrect")       
+      }    
   },
   error => {
     console.log(error)

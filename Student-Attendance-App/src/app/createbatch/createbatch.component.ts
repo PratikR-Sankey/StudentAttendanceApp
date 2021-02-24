@@ -15,19 +15,20 @@ import { Users } from '../users';
 })
 export class CreatebatchComponent implements OnInit {
   angForm: FormGroup;
-  ordersData = [];
+  orders = [];
+  message = null;
+  public newTime:string='13:30';
+  s_time = { hour: 13, minute: 30 };
   //meridian = false;
   constructor(private fb: FormBuilder,private dataService: ApiService,private router:Router) {
     this.angForm = this.fb.group({
       s_name: ['', [Validators.required]],
       s_division: ['', [Validators.required]],
-      studentlist:new FormArray([]),
+      s_student_list:['',Validators.required],
       s_date: ['', [Validators.required]],
       s_time: ['', [Validators.required]],
       s_type: ['', [Validators.required]],
       }); 
-     // this.addcheckboxes();
-     
    }
 
   ngOnInit(): void {
@@ -36,37 +37,41 @@ export class CreatebatchComponent implements OnInit {
    
   postdata(angForm1:any)
   {
-    this.dataService.createbatch(angForm1.s_name,angForm1.s_division,angForm1.s_student_list,angForm1.s_date,angForm1.s_time,angForm1.s_type)
+    this.dataService.createbatch(angForm1.s_name,angForm1.s_division,angForm1.s_date,this.newTime,angForm1.s_type)
   .pipe(first())
   .subscribe(
   data => {
-    console.log(data);
-    alert(" Session "+angForm1.s_name +" is  Created Successfully")
+    this.message = data.status;
+    console.log(this.message);
+    //console.log(data);
+    if(this.message=="200")
+      {
+    alert(" Batch "+angForm1.s_name +" is  Created Successfully")
   //this.router.navigate(['/dashboard']);
+      }
   },
   error => {
     console.log(error)
   alert("Batch Failed To Create")
   }); 
   }
-  selectChangeHandler (event: any) {
-   this.dataService.selstudent(event.target.value).subscribe(
-  data => {
-    console.log(data);
-  },
-  error => {
-    console.log(error)
-  alert("incorrect")
-  });
-  }
+  changeWebsite(e) {
 
-   private addcheckboxes()
-     {
-    this.ordersData.forEach((o, i) => 
-    {
-        const control = new FormControl(i === 0); 
-      (this.angForm.controls.orders as FormArray).push(control);
-    });
+    console.log(e.target.value);
+    this.dataService.selstudent(e.target.value).subscribe(
+      data => {
+        console.log(data);
+        this.orders=data;
+        console.log(this.orders);        
+      },
+      error => {
+        console.log(error)
+      alert("incorrect")
+      });
   }
-
+  onTimeChange(value:{hour:string,minute:string})
+  {
+     console.log(value)
+     this.newTime=`${value.hour}:${value.minute}`;
+  }
 }

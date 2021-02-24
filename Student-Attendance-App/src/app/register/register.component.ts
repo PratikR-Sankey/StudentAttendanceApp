@@ -13,6 +13,7 @@ import { formatCurrency } from '@angular/common';
 })
 export class RegisterComponent implements OnInit {
   angForm: FormGroup;
+  message = null;
   get email() { return this.angForm.get('email'); }
   get password() { return this.angForm.get('password'); }
   get username() { return this.angForm.get('username'); }
@@ -39,9 +40,20 @@ export class RegisterComponent implements OnInit {
   .pipe(first())
   .subscribe(
   data => {
-    alert(angForm1.email+"Is Successfully Registered ")
-    //const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/login';
+    this.message = data.status;
+    if(this.message=="200")
+      {
+      alert(angForm1.email+"Is Successfully Registered ")
     this.router.navigate(['/login']);
+      }
+      if(this.message=="400")
+      {
+        alert(angForm1.email+" is already Registered")    
+      }
+      if(this.message=="100")
+      {
+        alert("Must enter all the fields")    
+      }
   },
   error => {
     alert("Something Went Wrong")

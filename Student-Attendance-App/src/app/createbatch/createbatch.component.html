@@ -21,15 +21,16 @@
 </div>
 <div class="form-group">
     <label for="division">Division</label>
-    <select formControlName="s_division" name="s_division" class="form-control input-sm">
+    <select formControlName="s_division" name="s_division" class="form-control input-sm" (change)="changeWebsite($event)">
         <option value="IT">IT</option>
         <option value="HR">HR</option>
         <option value="Sales">Sales</option>
     </select>
 </div>
 <div class="form-group">
-    <label for="s_name">Student List</label><br/>
-    <input type="checkbox" name="s_student_list" formControlName="s_student_list">
+    
+    <label for="s_student_list">Student List</label><br/>
+    <input type="checkbox" name="s_student_list" formControlName="s_student_list" >  
 </div>
 <div class="form-group">
     <label for="s_date">Batch Date</label>
@@ -37,7 +38,7 @@
 </div>
  <div class="form-group">
     <label for="s_time">Batch time</label>
-    <ngb-timepicker ngModel="s_time" formControlName="s_time"></ngb-timepicker>
+    <ngb-timepicker [(ngModel)]="s_time" formControlName="s_time" (ngModelChange)="onTimeChange($event)"></ngb-timepicker>  
 </div> 
 <div class="form-group">
     <label for="s_type">Session Type</label>
